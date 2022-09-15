@@ -13,11 +13,11 @@ import ListingDetail from "./ListingDetail";
  */
 
  function ListingDetailPage() {
-  const {listingId} = useParams();
+  const params = useParams();
 
   return (
   <div className="ListingDetailPage">
-    <ListingDetail listingId={listingId} />
+    <ListingDetail listingId={params.listingId} />
     </div>);
 }
 

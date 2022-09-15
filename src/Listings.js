@@ -19,7 +19,7 @@ import LoadingSpinner from "./common/LoadingSpinner"
     async function getListings() {
       const resp = await ShareBnbApi.getListings();
 
-      setListings(resp.listings);
+      setListings(resp);
       setIsLoading(false)
     }
 

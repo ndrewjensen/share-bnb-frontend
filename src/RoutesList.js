@@ -18,7 +18,7 @@ function RoutesList({ login, register }) {
   return (
     <div className="RoutesList">
       <Routes>
-        <Route path="/listing/:id" element={<ListingDetailPage />} />
+        <Route path="/listings/:listingId" element={<ListingDetailPage />} />
         <Route path="/" element={<ListingsPage />} />
         <Route path="/login" element={<LoginPage login={login} />} />
         <Route path="/listing/new" element={<AddListingPage />} />

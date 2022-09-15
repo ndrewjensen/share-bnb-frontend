@@ -18,7 +18,7 @@ class ShareBnbApi {
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
-    // const headers = { Authorization: `Bearer ${ShareBnbApi.token}` };
+    const headers = { Authorization: `Bearer ${ShareBnbApi.token}` };
     const params = (method === "get")
         ? data
         : {};
@@ -26,7 +26,7 @@ class ShareBnbApi {
     // data.token = ShareBnbApi.token;
 
     try {
-      return (await axios({ url, method, data, params })).data;
+      return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("API Error:", err.response);
       let message = err.response.data.error.message;
@@ -50,12 +50,12 @@ class ShareBnbApi {
     return res.listings;
   }
 
-  // /** Get details on a company by handle. */
+  // /** Get details on a listing by id. */
 
-  // static async getCompany(handle) {
-  //   let res = await this.request(`companies/${handle}`);
-  //   return res.company;
-  // }
+  static async getListing(listingId) {
+    let res = await this.request(`listings/${listingId}`);
+    return res.listing;
+  }
 
   // /** Get list of jobs (filtered by title if not undefined) */
 
@@ -85,12 +85,17 @@ class ShareBnbApi {
     return res.token;
   }
 
-  /** Save user profile page. */
+  /** Add a booking. */
 
-  // static async saveProfile(username, data) {
-  //   let res = await this.request(`users/${username}`, data, "patch");
-  //   return res.user;
-  // }
+  static async book({listingId ,checkIn, checkOut}) {
+    let data = {
+      checkin_date: checkIn,
+      checkout_date: checkOut,
+    }
+    
+    let res = await this.request(`listings/${listingId}/book`, data, "post");
+    return res.booking;
+  }
 }
 
 

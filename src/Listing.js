@@ -12,7 +12,7 @@ function Listing ({listing}) {
       <h3>{listing.name}</h3>
       <h6>Price: ${listing.price}/night</h6>
       <p>{listing.description}</p>
-      <img src={listing.photo} alt={listing.name}/>
+      <img src={listing.photo} alt={listing.name} width="200px"/>
     </div>
   )
 }
