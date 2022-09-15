@@ -21,7 +21,7 @@ function RoutesList({ login, register }) {
         <Route path="/listings/:listingId" element={<ListingDetailPage />} />
         <Route path="/" element={<ListingsPage />} />
         <Route path="/login" element={<LoginPage login={login} />} />
-        <Route path="/listing/new" element={<AddListingPage />} />
+        <Route path="/add-listing" element={<AddListingPage />} />
       </Routes>
     </div>);
 }

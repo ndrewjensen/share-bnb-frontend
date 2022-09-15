@@ -12,7 +12,6 @@ import AddListingForm from "./AddListingForm";
  function AddListingPage() {
   return (
   <div className="AddListingPage">
-    AddListingPage
     <AddListingForm />
     </div>);
 }

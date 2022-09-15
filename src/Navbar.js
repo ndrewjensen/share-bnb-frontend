@@ -20,7 +20,7 @@ import { Link, NavLink } from "react-router-dom";
         <NavLink to="/login">Log In</NavLink>
       </li>
       <li>
-        <NavLink to="/listings/new">Add Listing</NavLink>
+        <NavLink to="/add-listing">Add Listing</NavLink>
       </li>
       <li>
         <NavLink to="/" onClick={logout}>Log Out</NavLink>
