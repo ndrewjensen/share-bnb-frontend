@@ -1,4 +1,7 @@
 import AddListingForm from "./AddListingForm";
+import { Navigate } from "react-router-dom";
+import { useContext } from "react";
+import userContext from "./UserContext";
 
 /** AddListingPage Component
  *
@@ -9,11 +12,15 @@ import AddListingForm from "./AddListingForm";
  * -none
  */
 
- function AddListingPage() {
+function AddListingPage() {
+  const { currentUser } = useContext(userContext);
+
   return (
-  <div className="AddListingPage">
-    <AddListingForm />
-    </div>);
+    <div className="AddListingPage">
+     { !currentUser.username && <Navigate to="/login"/>}
+      <AddListingForm />
+    </div>
+  );
 }
 
 export default AddListingPage;

@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+
 import BookingForm from "./BookingForm";
 import MessageForm from "./MessageForm";
 import ShareBnbApi from "./api";
+import userContext from "./UserContext";
+import LoadingSpinner from "./common/LoadingSpinner";
 
 /** ListingDetail Component
  *
@@ -15,25 +19,31 @@ import ShareBnbApi from "./api";
 function ListingDetail({ listingId }) {
   const [listing, setListing] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  
+  const { currentUser } = useContext(userContext);
+
   useEffect(() => {
     async function getListingDetail() {
       const resp = await ShareBnbApi.getListing(listingId);
-      setListing(resp)
-      setIsLoading(false)
+      setListing(resp);
+      setIsLoading(false);
     }
     getListingDetail();
-  },[]);
+  }, []);
 
+  if (isLoading) return <LoadingSpinner/>
   return (
     <div className="ListingDetail">
       <h1>{listing.name}</h1>
       <h6>Price: ${listing.price}/night</h6>
       <p>{listing.details}</p>
-      <img src={listing.photo} alt={listing.name} width="400"/>
+      <img src={listing.photo} alt={listing.name} width="400" />
 
-      <BookingForm listingId={listingId}/>
-      <MessageForm listingId={listingId}/>
+      {currentUser.username && (
+        <>
+          <BookingForm listingId={listingId} />
+          <MessageForm listingId={listingId} />
+        </>
+      )}
     </div>
   );
 }

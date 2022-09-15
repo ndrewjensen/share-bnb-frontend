@@ -30,7 +30,7 @@ import LoadingSpinner from "./common/LoadingSpinner"
 
   return (
     <div className="Listings">
-      {listings.map(l => <Listing key={l.name} listing={l}/>)}
+      {listings.map(l => <Listing key={l.id} listing={l}/>)}
     </div>
   )
 }

@@ -38,12 +38,14 @@ function App() {
       async function getCurrentUser() {
         if (token) {
           try {
-            let { username } = decode(token);
+            let decodedToken = decode(token)
+            console.log("decodedToken",decodedToken)
+            let { sub } = decode(token);
+            console.log('username',sub)
             // put the token on the Api class so it can use it to call the API.
             ShareBnbApi.token = token;
-            // let currentUser = await ShareBnbApi.getCurrentUser(username);
-
-            setCurrentUser({username});
+            let currentUser = await ShareBnbApi.getCurrentUser(sub);
+            setCurrentUser(currentUser);
             setIsLoading(false);
           } catch (err) {
             setCurrentUser({});

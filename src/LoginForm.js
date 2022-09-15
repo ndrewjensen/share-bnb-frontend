@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
+import { Navigate, useNavigate} from 'react-router-dom'
+
 import Alert from "./common/Alert";
-// import "./LoginForm.css";
-import { useNavigate } from "react-router-dom";
+
+import userContext from "./UserContext";
 
 /** LoginForm Component
  *
@@ -19,6 +21,7 @@ function LoginForm({ login }) {
     password: "",
   });
   const [formErrors, setFormErrors] = useState([]);
+  const { currentUser } = useContext(userContext);
 
   console.debug(
     "LoginForm",
@@ -50,6 +53,7 @@ function LoginForm({ login }) {
 
   return (
     <div className="LoginForm">
+      {currentUser.username && <Navigate to="/"/>}
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
         <h3 className="mb-3">Log In</h3>
 

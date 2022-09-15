@@ -18,13 +18,9 @@ class ShareBnbApi {
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
-    console.log("token", ShareBnbApi.token)
+    console.log("token", ShareBnbApi.token);
     const headers = { Authorization: `Bearer ${ShareBnbApi.token}` };
-    const params = (method === "get")
-      ? data
-      : {};
-
-    // data.token = ShareBnbApi.token;
+    const params = method === "get" ? data : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -39,10 +35,10 @@ class ShareBnbApi {
 
   /** Get the current user. */
 
-  // static async getCurrentUser(username) {
-  //   let res = await this.request(`users/${username}`);
-  //   return res.user;
-  // }
+  static async getCurrentUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
 
   /** Get listings (filtered by name if not undefined) */
 
@@ -61,18 +57,23 @@ class ShareBnbApi {
   /** Add a listing. */
 
   static async addListing(data) {
+    let resp;
+    const headers = {
+      Authorization: `Bearer ${ShareBnbApi.token}`,
+      "Content-Type": "multipart/form-data",
+    };
 
-    const headers = { Authorization: `Bearer ${ShareBnbApi.token}`,
-                    "Content-Type": "multipart/form-data" };
-
-    const resp = await axios.post(`${BASE_URL}/listings`, data, {
-      headers: headers
-    })
-
-    console.log ("succcessful API call", resp)
-    debugger
-    // let res = await this.request(`listings`, data, "post");
-    return resp.listing;
+    try {
+      resp = await axios.post(`${BASE_URL}/listings`, data, {
+        headers: headers,
+      });
+    } catch (err) {
+      console.error("API Error:", err);
+      let message = err.message;
+      throw Array.isArray(message) ? message : [message];
+    }
+    console.log("in api resp", resp);
+    return resp.data.listing;
   }
 
   // /** Get list of jobs (filtered by title if not undefined) */
@@ -91,7 +92,7 @@ class ShareBnbApi {
   /** Get token for login from username, password. */
 
   static async login(data) {
-    console.debug("API Call:", 'login', data);
+    console.debug("API Call:", "login", data);
     let res = await this.request(`login`, data, "post");
     return res.token;
   }
@@ -115,6 +116,5 @@ class ShareBnbApi {
     return res.booking;
   }
 }
-
 
 export default ShareBnbApi;

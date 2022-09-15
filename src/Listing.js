@@ -1,3 +1,5 @@
+import {NavLink} from "react-router-dom"
+
 /** Listing Component
  *
  * Props:
@@ -8,12 +10,14 @@
 
 function Listing ({listing}) {
   return (
+    <NavLink to={`listings/${listing.id}`}>
     <div className="Listing">
       <h3>{listing.name}</h3>
       <h6>Price: ${listing.price}/night</h6>
       <p>{listing.description}</p>
       <img src={listing.photo} alt={listing.name} width="200px"/>
     </div>
+    </NavLink>
   )
 }
 
