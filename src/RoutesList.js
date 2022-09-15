@@ -1,3 +1,5 @@
+import { Routes, Route } from "react-router-dom";
+
 import ListingDetailPage from "./ListingDetailPage";
 import ListingsPage from "./ListingsPage";
 import LoginPage from "./LoginPage";
@@ -12,14 +14,15 @@ import AddListingPage from "./AddListingPage";
  * -none
  */
 
- function RoutesList({ login,register }) {
+function RoutesList({ login, register }) {
   return (
-  <div className="RoutesList">
-    RoutesList
-    <ListingDetailPage />
-    <ListingsPage />
-    <LoginPage />
-    <AddListingPage />
+    <div className="RoutesList">
+      <Routes>
+        <Route path="/listing/:id" element={<ListingDetailPage />} />
+        <Route path="/" element={<ListingsPage />} />
+        <Route path="/login" element={<LoginPage login={login} />} />
+        <Route path="/listing/new" element={<AddListingPage />} />
+      </Routes>
     </div>);
 }
 

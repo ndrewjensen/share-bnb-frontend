@@ -9,7 +9,7 @@ import RoutesList from './RoutesList';
 import Navbar from "./Navbar";
 import ShareBnbApi from "./api";
 
-export const TOKEN_STORAGE_ID = "jobly-token";
+export const TOKEN_STORAGE_ID = "token";
 
 /** App Component
  *
@@ -43,9 +43,9 @@ function App() {
             let { username } = decode(token);
             // put the token on the Api class so it can use it to call the API.
             ShareBnbApi.token = token;
-            let currentUser = await ShareBnbApi.getCurrentUser(username);
+            // let currentUser = await ShareBnbApi.getCurrentUser(username);
 
-            setCurrentUser(currentUser);
+            setCurrentUser({username});
             setIsLoading(false);
           } catch (err) {
             console.error("App loadUserInfo: problem loading", err);

@@ -13,7 +13,7 @@ import LoginForm from "./LoginForm";
   return (
   <div className="LoginPage">
     LoginPage
-    <LoginForm />
+    <LoginForm login={login}/>
     </div>);
 }
 

@@ -1,5 +1,7 @@
+import {useState, useEffect} from "react"
 import BookingForm from "./BookingForm";
 import MessageForm from "./MessageForm";
+import ShareBnbApi from "./api";
 
 /** ListingDetail Component
  *
@@ -11,6 +13,15 @@ import MessageForm from "./MessageForm";
  */
 
  function ListingDetail({ listingId }) {
+  const [listing, setListing] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function getListingDetail(listingId) {
+      // const resp = await ShareBnbApi.
+    }
+  })
+
   return (
   <div className="ListingDetail">
     ListingDetail
