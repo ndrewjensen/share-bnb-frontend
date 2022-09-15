@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import decode from "jwt-decode";
+import useLocalStorage from "./useLocalStorage";
+import UserContext from "./UserContext";
 
 import './App.css';
 import RoutesList from './RoutesList';
 import Navbar from "./Navbar";
+import ShareBnbApi from "./api";
 
 export const TOKEN_STORAGE_ID = "jobly-token";
 
@@ -15,16 +18,16 @@ export const TOKEN_STORAGE_ID = "jobly-token";
  *
  * State:
  * -user
- * 
- * Context: 
- * 
+ *
+ * Context:
+ *
  * -user
  */
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState();
-  const [token, setToken] = useState(TOKEN_STORAGE_ID);
+  const [currentUser, setCurrentUser] = useState({});
+  const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
 
   // Load user info from API. Until a user is logged in and they have a token,
   // this should not run. It only needs to re-run when a user logs out, so
@@ -39,26 +42,19 @@ function App() {
           try {
             let { username } = decode(token);
             // put the token on the Api class so it can use it to call the API.
-            JoblyApi.token = token;
-            let currentUser = await JoblyApi.getCurrentUser(username);
+            ShareBnbApi.token = token;
+            let currentUser = await ShareBnbApi.getCurrentUser(username);
 
-            setCurrentUser({
-              infoLoaded: true,
-              data: currentUser
-            });
-            setApplicationIds(new Set(currentUser.applications));
+            setCurrentUser(currentUser);
+            setIsLoading(false);
           } catch (err) {
             console.error("App loadUserInfo: problem loading", err);
-            setCurrentUser({
-              infoLoaded: true,
-              data: null
-            });
+            setCurrentUser({});
+            setIsLoading(false);
           }
         } else {
-          setCurrentUser({
-            infoLoaded: true,
-            data: null
-          });
+          setCurrentUser({});
+          setIsLoading(false);
         }
       }
       getCurrentUser();
@@ -68,11 +64,7 @@ function App() {
 
   /** Handles site-wide logout. */
   function logout() {
-    setApplicationIds(new Set([]));
-    setCurrentUser({
-      infoLoaded: true,
-      data: null
-    });
+    setCurrentUser({});
     setToken(null);
   }
 
@@ -83,7 +75,7 @@ function App() {
    * Make sure you await this function to see if any error happens.
    */
   async function signup(signupData) {
-    let token = await JoblyApi.signup(signupData);
+    let token = await ShareBnbApi.signup(signupData);
     setToken(token);
   }
 
@@ -94,20 +86,21 @@ function App() {
    * Make sure you await this function to see if any error happens.
    */
   async function login(loginData) {
-    let token = await JoblyApi.login(loginData);
+    let token = await ShareBnbApi.login(loginData);
     setToken(token);
   }
 
-
+  if (isLoading) return <h1>Loading</h1>;
 
   return (
-    <div className="App">
-      <BrowserRouter>
-      <Navbar />
-      <RoutesList />
-
-      </BrowserRouter>
-    </div>
+    <UserContext.Provider value={{ currentUser }}>
+      <div className="App">
+        <BrowserRouter>
+          <Navbar logout={logout}/>
+          <RoutesList login={login} signup={signup} />
+        </BrowserRouter>
+      </div>
+    </UserContext.Provider>
   );
 }
 
