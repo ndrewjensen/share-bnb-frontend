@@ -18,10 +18,11 @@ class ShareBnbApi {
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
+    console.log("token", ShareBnbApi.token)
     const headers = { Authorization: `Bearer ${ShareBnbApi.token}` };
     const params = (method === "get")
-        ? data
-        : {};
+      ? data
+      : {};
 
     // data.token = ShareBnbApi.token;
 
@@ -57,6 +58,23 @@ class ShareBnbApi {
     return res.listing;
   }
 
+  /** Add a listing. */
+
+  static async addListing(data) {
+
+    const headers = { Authorization: `Bearer ${ShareBnbApi.token}`,
+                    "Content-Type": "multipart/form-data" };
+
+    const resp = await axios.post(`${BASE_URL}/listings`, data, {
+      headers: headers
+    })
+
+    console.log ("succcessful API call", resp)
+    debugger
+    // let res = await this.request(`listings`, data, "post");
+    return resp.listing;
+  }
+
   // /** Get list of jobs (filtered by title if not undefined) */
 
   // static async getJobs(title) {
@@ -87,12 +105,12 @@ class ShareBnbApi {
 
   /** Add a booking. */
 
-  static async book({listingId ,checkIn, checkOut}) {
+  static async book({ listingId, checkIn, checkOut }) {
     let data = {
       checkin_date: checkIn,
       checkout_date: checkOut,
-    }
-    
+    };
+
     let res = await this.request(`listings/${listingId}/book`, data, "post");
     return res.booking;
   }
