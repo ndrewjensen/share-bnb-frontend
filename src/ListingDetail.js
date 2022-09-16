@@ -36,11 +36,11 @@ function ListingDetail({ listingId }) {
       <h1>{listing.name}</h1>
       <h6>Price: ${listing.price}/night</h6>
       <p>{listing.details}</p>
-      <img src={listing.photo} alt={listing.name} width="400" />
+      <img src={listing.photo} alt={listing.name} className="col-4" />
 
       {currentUser.username && (
         <>
-          <MessageForm listingId={listingId} />
+          <div className="col-4 offset-4"><MessageForm listingId={listingId} /></div>
           <BookingForm listingId={listingId} />
         </>
       )}

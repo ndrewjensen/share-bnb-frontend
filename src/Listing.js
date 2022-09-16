@@ -16,7 +16,7 @@ function Listing({ listing }) {
       <NavLink href={`listings/${listing.id}`}>
         <div className="Listing">
           <CardTitle>{listing.name}</CardTitle>
-          <CardText>Price: ${listing.price}/night</CardText>
+          <CardText>Price: ${listing.price}/day</CardText>
           <img src={listing.photo} alt={listing.name} width="200px" />
         </div>
       </NavLink>

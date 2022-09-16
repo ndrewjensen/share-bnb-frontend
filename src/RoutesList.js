@@ -6,6 +6,8 @@ import LoginPage from "./LoginPage";
 import SignupPage from "./SignupPage";
 import AddListingPage from "./AddListingPage";
 import ConversationsPage from "./ConversationsPage";
+import ConversationDetail from "./ConversationDetail";
+import BookingsPage from "./BookingsPage";
 
 /** RoutesList Component
  *
@@ -26,6 +28,8 @@ function RoutesList({ login, signup }) {
         <Route path="/login" element={<LoginPage login={login} />} />
         <Route path="/signup" element={<SignupPage signup={signup} />} />
         <Route path="/conversations" element={<ConversationsPage />} />
+        <Route path="/conversations/:username" element={<ConversationDetail />} />
+        <Route path="/bookings" element={<BookingsPage />} />
       </Routes>
     </div>);
 }

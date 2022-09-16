@@ -80,13 +80,29 @@ class ShareBnbApi {
 
   static async getConversations() {
     let res = await this.request("messages");
-    return res.jobs;
+    return res.conversations;
+  }
+
+  /** Get messages in one conversation  */
+
+  static async getConversation(username) {
+    const user = await this.getCurrentUser(username);
+    let res = await this.request(`messages/${user.id}`);
+    return res.messages;
+  }
+
+  /** Reply to a conversation.  */
+
+  static async replyToConversation(username, text) {
+    const user = await this.getCurrentUser(username, text);
+    let res = await this.request(`messages/${user.id}`, { text }, "POST");
+    return res.message;
   }
 
   /** Message a listing owner. */
 
   static async messageOwner(text, listingId) {
-    await this.request(`listings/${listingId}/message`, {text}, "post");
+    await this.request(`listings/${listingId}/message`, { text }, "post");
   }
 
   /** Get token for login from username, password. */
@@ -114,6 +130,13 @@ class ShareBnbApi {
 
     let res = await this.request(`listings/${listingId}/book`, data, "post");
     return res.booking;
+  }
+
+  /** Get list of bookings  */
+
+  static async getBookings(username) {
+    let res = await this.request(`users/${username}/bookings`);
+    return res.bookings;
   }
 }
 

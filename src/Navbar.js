@@ -38,6 +38,9 @@ function NavBar({ logout }) {
               <NavLink href="/conversations">Conversations</NavLink>
             </NavItem>
             <NavItem>
+              <NavLink href="/bookings">Bookings</NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink href="/" onClick={logout}>Log Out {currentUser.username}</NavLink>
             </NavItem>
 

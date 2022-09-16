@@ -10,7 +10,7 @@ import Alert from "./common/Alert";
  * -formData
  */
 
-function MessageForm({ listingId }) {
+function MessageForm({ listingId, username, refresh }) {
   const [message, setMessage] = useState("");
   const [formErrors, setFormErrors] = useState([]);
 
@@ -19,8 +19,12 @@ function MessageForm({ listingId }) {
     // take care of accidentally trying to search for just spaces
     evt.preventDefault();
     try {
-      await ShareBnbApi.messageOwner(message.trim(), listingId);
-      setFormErrors(["Message sent!"])
+      if (listingId) {
+        await ShareBnbApi.messageOwner(message.trim(), listingId);
+        setFormErrors(["Message sent!"]);
+      } else {
+        refresh(await ShareBnbApi.replyToConversation(username, message.trim()));
+      }
     } catch {
       setFormErrors(["Please fill out fields correctly."]);
     }
@@ -34,27 +38,27 @@ function MessageForm({ listingId }) {
 
   return (
     <div className="MessageForm mb-4">
-      <h3>Send a Message!</h3>
+      <h5>Send Message</h5>
       <form onSubmit={handleSubmit}>
         <div className="row justify-content-center justify-content-lg-start gx-0">
-          <div className="col-6 offset-3">
+          <div className="">
             <textarea
               className="form-control form-control-lg"
               name="message"
-              placeholder="Send a message to the listing owner.."
+              placeholder="Type your message here.."
               value={message}
               onChange={handleChange}
             />
           </div>
-          <div className="col-auto">
+          {formErrors.length ? (
+            <Alert type="danger" messages={formErrors} />
+          ) : null}
+        </div>
+          <div className="text-end">
             <button type="submit" className="btn btn-lg btn-primary">
               Submit
             </button>
           </div>
-          {formErrors.length ? (
-                <Alert type="danger" messages={formErrors} />
-              ) : null}
-        </div>
       </form>
     </div>
   );

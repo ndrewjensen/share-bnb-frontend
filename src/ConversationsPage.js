@@ -12,7 +12,7 @@ import Conversations from "./Conversations";
  function ConversationsPage() {
   return (
   <div className="ConversationsPage">
-    Conversations
+    <h4>Conversations</h4>
     <Conversations />
     </div>);
 }
