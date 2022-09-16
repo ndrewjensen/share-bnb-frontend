@@ -31,7 +31,6 @@ function BookingForm({ listingId }) {
     } else {
       try {
         await ShareBnbApi.book({ listingId, checkIn, checkOut });
-
         navigate("/");
       } catch (err) {
         setFormErrors(err);

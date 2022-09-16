@@ -40,8 +40,8 @@ function ListingDetail({ listingId }) {
 
       {currentUser.username && (
         <>
-          <BookingForm listingId={listingId} />
           <MessageForm listingId={listingId} />
+          <BookingForm listingId={listingId} />
         </>
       )}
     </div>

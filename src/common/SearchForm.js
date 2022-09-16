@@ -13,7 +13,7 @@ import "./SearchForm.css";
  * { CompanyList, JobList } -> SearchForm
  */
 
-function SearchForm({ searchFor }) {
+function SearchForm({ search }) {
   console.debug("SearchForm", "searchFor=", typeof searchFor);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -22,8 +22,8 @@ function SearchForm({ searchFor }) {
   function handleSubmit(evt) {
     // take care of accidentally trying to search for just spaces
     evt.preventDefault();
-    searchFor(searchTerm.trim() || undefined);
-    setSearchTerm(searchTerm.trim());
+    search(searchTerm.trim() || undefined);
+    setSearchTerm('');
   }
 
   /** Update form fields */

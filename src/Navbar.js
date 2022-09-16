@@ -20,12 +20,16 @@ import userContext from "./UserContext"
       <li>
         <NavLink to="/">ShareBnb</NavLink>
       </li>
-      
+
       { !currentUser.username &&
+      <>
       <li>
         <NavLink to="/login">Log In</NavLink>
       </li>
-
+      <li>
+        <NavLink to="/signup">Sign Up</NavLink>
+      </li>
+      </>
       }
       { currentUser.username &&
         <>
@@ -33,11 +37,15 @@ import userContext from "./UserContext"
         <NavLink to="/add-listing">Add Listing</NavLink>
       </li>
       <li>
-        <NavLink to="/" onClick={logout}>Log Out</NavLink>
+        <NavLink to="/conversations">Conversations</NavLink>
       </li>
+      <li>
+        <NavLink to="/" onClick={logout}>Log Out {currentUser.username}</NavLink>
+      </li>
+
       </>
       }
-      
+
     </ul>
     </div>);
 }

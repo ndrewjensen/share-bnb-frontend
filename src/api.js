@@ -76,18 +76,18 @@ class ShareBnbApi {
     return resp.data.listing;
   }
 
-  // /** Get list of jobs (filtered by title if not undefined) */
+  /** Get list of conversations  */
 
-  // static async getJobs(title) {
-  //   let res = await this.request("jobs", { title });
-  //   return res.jobs;
-  // }
+  static async getConversations() {
+    let res = await this.request("messages");
+    return res.jobs;
+  }
 
-  // /** Apply to a job */
+  /** Message a listing owner. */
 
-  // static async applyToJob(username, id) {
-  //   await this.request(`users/${username}/jobs/${id}`, {}, "post");
-  // }
+  static async messageOwner(text, listingId) {
+    await this.request(`listings/${listingId}/message`, {text}, "post");
+  }
 
   /** Get token for login from username, password. */
 
