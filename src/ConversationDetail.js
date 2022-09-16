@@ -45,7 +45,7 @@ function ConversationDetail() {
         <CardTitle>
           Conversation with {username}
         </CardTitle>
-        {messages.map(m => <MessageCard message={m} key={m.id}/>)}
+        {messages.map(m => <MessageCard withUsername={username} message={m} key={m.id}/>)}
         <MessageForm username={username} refresh={refresh}/>
       </CardBody>
     </Card>

@@ -1,5 +1,7 @@
 // import { NavLink } from "react-router-dom";
 import { Card, CardBody, CardTitle, CardText, NavLink } from "reactstrap";
+import { useContext } from "react";
+import userContext from "./UserContext";
 
 
 /** MessageCard Component
@@ -10,9 +12,15 @@ import { Card, CardBody, CardTitle, CardText, NavLink } from "reactstrap";
  * State: None
  */
 
-function MessageCard({ message }) {
+function MessageCard({ message, withUsername }) {
+  const { currentUser } = useContext(userContext);
 
   return (
+    <>
+    <h6 className="text-start my-1">
+    {currentUser.id === message.fromUserId && "You:"}
+    {currentUser.id !== message.fromUserId && `${withUsername}:`}
+    </h6>
     <Card className="text-start">
       <CardBody className="p-1">
         <CardText className="text-start">
@@ -21,6 +29,7 @@ function MessageCard({ message }) {
         <CardText className="text-end"><small>{message.timestamp}</small></CardText>
       </CardBody>
     </Card>
+    </>
   );
 }
 

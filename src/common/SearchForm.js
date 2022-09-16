@@ -24,7 +24,6 @@ function SearchForm({ search }) {
     // take care of accidentally trying to search for just spaces
     evt.preventDefault();
     search(searchTerm.trim() || undefined);
-    setSearchTerm('');
   }
 
   /** Update form fields */

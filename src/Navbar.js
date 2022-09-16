@@ -17,8 +17,10 @@ function NavBar({ logout }) {
   const { currentUser } = useContext(userContext);
   return (
     <Navbar color="light">
+        <NavbarBrand href="/">
+          ShareBnb
+        </NavbarBrand>
       <Nav className="Navbar">
-        <NavbarBrand href="/">ShareBnb</NavbarBrand>
         {!currentUser.username &&
           <>
             <NavItem>

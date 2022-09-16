@@ -1,4 +1,7 @@
 import Conversations from "./Conversations";
+import {Navigate} from "react-router-dom"
+import { useContext } from "react";
+import userContext from "./UserContext";
 
 /** LoginPage Component
  *
@@ -10,8 +13,11 @@ import Conversations from "./Conversations";
  */
 
  function ConversationsPage() {
+  const { currentUser } = useContext(userContext);
+
   return (
   <div className="ConversationsPage">
+    { !currentUser.username && <Navigate to="/login"/>}
     <h4>Conversations</h4>
     <Conversations />
     </div>);

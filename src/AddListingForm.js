@@ -17,7 +17,7 @@ import Alert from "./common/Alert";
 
 function AddListingForm() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({name: '', price: '', details: ''});
   const [formErrors, setFormErrors] = useState([]);
   const { register, handleSubmit } = useForm();
 
@@ -44,9 +44,10 @@ function AddListingForm() {
     multiFormData.append("name", formData.name);
     multiFormData.append("price", formData.price);
     multiFormData.append("details", formData.details);
+    debugger
     multiFormData.append("photo", data.file[0]);
 
-    for (var key of multiFormData.entries()) {
+    for (let key of multiFormData.entries()) {
       console.log(key[0] + ", " + key[1]);
     }
     try {
@@ -87,17 +88,7 @@ function AddListingForm() {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Details</label>
-                <input
-                  name="details"
-                  className="form-control"
-                  value={formData.details}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Price</label>
+                <label className="form-label">Price per Day</label>
                 <input
                   name="price"
                   type="number"
@@ -108,8 +99,19 @@ function AddListingForm() {
                 />
               </div>
               <div className="mb-3">
+                <label className="form-label">Details</label>
+                <input
+                  name="details"
+                  className="form-control"
+                  value={formData.details}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="mb-3">
                 <label className="form-label">Photo</label>
-                <Input name="file" type="file" {...register("file")} />
+                <input name="file" type="file" {...register("file")}
+                className="form-control" />
               </div>
               <Button>Submit</Button>
               {formErrors.length ? (
