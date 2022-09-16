@@ -1,4 +1,5 @@
-import {NavLink} from "react-router-dom"
+// import { NavLink } from "react-router-dom";
+import { Card, CardBody, CardTitle, CardText, NavLink } from "reactstrap";
 
 /** Listing Component
  *
@@ -8,17 +9,20 @@ import {NavLink} from "react-router-dom"
  * State: None
  */
 
-function Listing ({listing}) {
+function Listing({ listing }) {
   return (
-    <NavLink to={`listings/${listing.id}`}>
-    <div className="Listing">
-      <h3>{listing.name}</h3>
-      <h6>Price: ${listing.price}/night</h6>
-      <p>{listing.description}</p>
-      <img src={listing.photo} alt={listing.name} width="200px"/>
-    </div>
-    </NavLink>
-  )
+    <Card className="col-md-4 offset-md-4 my-2" color="light">
+      <CardBody className="p-1">
+      <NavLink href={`listings/${listing.id}`}>
+        <div className="Listing">
+          <CardTitle>{listing.name}</CardTitle>
+          <CardText>Price: ${listing.price}/night</CardText>
+          <img src={listing.photo} alt={listing.name} width="200px" />
+        </div>
+      </NavLink>
+      </CardBody>
+    </Card>
+  );
 }
 
-export default Listing
+export default Listing;

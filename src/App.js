@@ -3,10 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import decode from "jwt-decode";
 import useLocalStorage from "./useLocalStorage";
 import UserContext from "./UserContext";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 import RoutesList from './RoutesList';
-import Navbar from "./Navbar";
+import NavBar from "./Navbar";
 import ShareBnbApi from "./api";
 
 export const TOKEN_STORAGE_ID = "token";
@@ -95,7 +96,7 @@ function App() {
     <UserContext.Provider value={{ currentUser }}>
       <div className="App">
         <BrowserRouter>
-          <Navbar logout={logout}/>
+          <NavBar logout={logout}/>
           <RoutesList login={login} signup={signup} />
         </BrowserRouter>
       </div>

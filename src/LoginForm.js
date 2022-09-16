@@ -23,13 +23,6 @@ function LoginForm({ login }) {
   const [formErrors, setFormErrors] = useState([]);
   const { currentUser } = useContext(userContext);
 
-  console.debug(
-    "LoginForm",
-    "login=", typeof login,
-    "formData=", formData,
-    "formErrors", formErrors,
-  );
-
   /** Handle form submit:
    *
    * Calls login func prop and, if not successful, sets errors.

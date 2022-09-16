@@ -37,7 +37,7 @@ function MessageForm({ listingId }) {
       <h3>Send a Message!</h3>
       <form onSubmit={handleSubmit}>
         <div className="row justify-content-center justify-content-lg-start gx-0">
-          <div className="col-8">
+          <div className="col-6 offset-3">
             <textarea
               className="form-control form-control-lg"
               name="message"

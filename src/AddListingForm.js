@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import ShareBnbApi from "./api";
+import {Input, Button} from "reactstrap";
 
 import Alert from "./common/Alert";
 
@@ -108,9 +109,9 @@ function AddListingForm() {
               </div>
               <div className="mb-3">
                 <label className="form-label">Photo</label>
-                <input name="file" type="file" {...register("file")} />
+                <Input name="file" type="file" {...register("file")} />
               </div>
-              <input type="submit" />
+              <Button>Submit</Button>
               {formErrors.length ? (
                 <Alert type="danger" messages={formErrors} />
               ) : null}

@@ -12,7 +12,6 @@ import LoginForm from "./LoginForm";
  function LoginPage({ login }) {
   return (
   <div className="LoginPage">
-    LoginPage
     <LoginForm login={login}/>
     </div>);
 }
