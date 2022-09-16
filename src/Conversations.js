@@ -1,42 +1,41 @@
-import {useState, useEffect} from "react";
-import {NavLink} from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import ShareBnbApi from "./api";
 import LoadingSpinner from "./common/LoadingSpinner";
 import Conversation from "./Conversation";
 
-
-
 /** Conversations Component
  *
- * Props:
- * -conversations {id, userId, photo, price, details}
- *
- * State: None
+ * Props: none
+ * State: conversations, isLoading
  */
 
-function Conversations () {
+function Conversations() {
   const [conversations, setConversations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getConversations() {
       const conversations = await ShareBnbApi.getConversations();
-
       setConversations(conversations);
       setIsLoading(false);
     }
 
-    getConversations()
-  },[])
+    getConversations();
+  }, []);
 
   if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className="Conversations">
-      {conversations.map(c => <Conversation conversation={c} key={c.id}/>)}
+      {conversations.length === 0 && (
+        <p>You haven't started any conversations.</p>
+      )}
+      {conversations.map((c) => (
+        <Conversation conversation={c} key={c.id} />
+      ))}
     </div>
-
-  )
+  );
 }
 
-export default Conversations
+export default Conversations;

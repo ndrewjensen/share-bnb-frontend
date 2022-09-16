@@ -11,11 +11,8 @@ import BookingsPage from "./BookingsPage";
 
 /** RoutesList Component
  *
- * Props:
- * -signup(),login()
- *
- * State:
- * -none
+ * Props: signup(), login()
+ * State: none
  */
 
 function RoutesList({ login, signup }) {
@@ -28,10 +25,14 @@ function RoutesList({ login, signup }) {
         <Route path="/login" element={<LoginPage login={login} />} />
         <Route path="/signup" element={<SignupPage signup={signup} />} />
         <Route path="/conversations" element={<ConversationsPage />} />
-        <Route path="/conversations/:username" element={<ConversationDetail />} />
+        <Route
+          path="/conversations/:username"
+          element={<ConversationDetail />}
+        />
         <Route path="/bookings" element={<BookingsPage />} />
       </Routes>
-    </div>);
+    </div>
+  );
 }
 
 export default RoutesList;

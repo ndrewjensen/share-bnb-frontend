@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
-import Alert from "./common/Alert";
 import { useNavigate, Navigate } from "react-router-dom";
+
+import Alert from "./common/Alert";
 import userContext from "./UserContext";
 
 /** Signup form.
@@ -8,6 +9,9 @@ import userContext from "./UserContext";
  * Shows form and manages update to state on changes.
  * On submission:
  * - calls signup function prop
+ *
+ * Props: signup() to call in App
+ * State: formData, formErrors
  *
  * Routes -> SignupForm -> Alert
  * Routed as /signup
@@ -29,6 +33,7 @@ function SignupForm({ signup }) {
    *
    * Calls login func prop and, if not successful, sets errors.
    */
+
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
@@ -42,7 +47,7 @@ function SignupForm({ signup }) {
   /** Update form data field */
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(data => ({ ...data, [name]: value }));
+    setFormData((data) => ({ ...data, [name]: value }));
   }
 
   return (
@@ -102,10 +107,9 @@ function SignupForm({ signup }) {
                 />
               </div>
 
-              {formErrors.length
-                ? <Alert type="danger" messages={formErrors} />
-                : null
-              }
+              {formErrors.length ? (
+                <Alert type="danger" messages={formErrors} />
+              ) : null}
 
               <div className="d-grid">
                 <button className="btn btn-primary" onClick={handleSubmit}>

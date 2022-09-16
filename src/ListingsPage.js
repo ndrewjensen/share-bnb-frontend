@@ -1,20 +1,17 @@
-import Listings from "./Listings"
+import Listings from "./Listings";
 
 /** ListingsPage Component
- * 
- * Props: None
- * 
- * State:
- * -listings [{id, userId, photo, price, details},...]
+ *
+ * Props: none
+ * State: none
  */
 
- function ListingsPage () {
+function ListingsPage() {
   return (
     <div className="ListingsPage">
       <Listings />
-
     </div>
-  )
+  );
 }
 
-export default ListingsPage
+export default ListingsPage;

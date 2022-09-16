@@ -9,11 +9,8 @@ import LoadingSpinner from "./common/LoadingSpinner";
 
 /** ListingDetail Component
  *
- * Props:
- * -listingId as integer
- *
- * State:
- * -none
+ * Props: listingId as integer
+ * State: listing, isLoading
  */
 
 function ListingDetail({ listingId }) {
@@ -30,17 +27,19 @@ function ListingDetail({ listingId }) {
     getListingDetail();
   }, []);
 
-  if (isLoading) return <LoadingSpinner/>
+  if (isLoading) return <LoadingSpinner />;
   return (
     <div className="ListingDetail">
       <h1>{listing.name}</h1>
       <h6>Price: ${listing.price}/night</h6>
       <p>{listing.details}</p>
       <img src={listing.photo} alt={listing.name} className="col-4" />
-
-      {currentUser.username && (
+    
+      {currentUser.username && currentUser.id !== listing.userId && (
         <>
-          <div className="col-4 offset-4"><MessageForm listingId={listingId} /></div>
+          <div className="col-4 offset-4">
+            <MessageForm listingId={listingId} />
+          </div>
           <BookingForm listingId={listingId} />
         </>
       )}

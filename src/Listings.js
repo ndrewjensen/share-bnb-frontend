@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import Listing from "./Listing";
 import ShareBnbApi from "./api";
 import LoadingSpinner from "./common/LoadingSpinner";
@@ -10,6 +11,7 @@ import SearchForm from "./common/SearchForm";
  *
  * State:
  * -listings [{id, userId, photo, price, details},...]
+ * -isLoading
  */
 
 function Listings() {
@@ -19,7 +21,6 @@ function Listings() {
   useEffect(function loadListings() {
     async function getListings() {
       const resp = await ShareBnbApi.getListings();
-
       setListings(resp);
       setIsLoading(false);
     }
@@ -28,6 +29,7 @@ function Listings() {
   }, []);
 
   /** Triggered by search form submit; reloads listings. */
+  
   async function search(name) {
     let listings = await ShareBnbApi.getListings(name);
     setListings(listings);
@@ -37,9 +39,11 @@ function Listings() {
 
   return (
     <>
-      <SearchForm search={search}/>
+      <SearchForm search={search} />
       <div className="Listings">
-        {listings.map(l => <Listing key={l.id} listing={l} />)}
+        {listings.map((l) => (
+          <Listing key={l.id} listing={l} />
+        ))}
       </div>
     </>
   );

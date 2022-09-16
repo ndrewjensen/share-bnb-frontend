@@ -72,7 +72,6 @@ class ShareBnbApi {
       let message = err.message;
       throw Array.isArray(message) ? message : [message];
     }
-    console.log("in api resp", resp);
     return resp.data.listing;
   }
 
@@ -132,7 +131,7 @@ class ShareBnbApi {
     return res.booking;
   }
 
-  /** Get list of bookings  */
+  /** Get list of bookings for a user  */
 
   static async getBookings(username) {
     let res = await this.request(`users/${username}/bookings`);

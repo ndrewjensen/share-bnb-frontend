@@ -2,18 +2,17 @@ import SignupForm from "./SignupForm";
 
 /** SignupPage Component
  *
- * Props:
- * -signup()
+ * Props: signup()
  *
- * State:
- * -none
+ * State: none
  */
 
- function SignupPage({ signup }) {
+function SignupPage({ signup }) {
   return (
-  <div className="SignupPage">
-    <SignupForm signup={signup}/>
-    </div>);
+    <div className="SignupPage">
+      <SignupForm signup={signup} />
+    </div>
+  );
 }
 
 export default SignupPage;

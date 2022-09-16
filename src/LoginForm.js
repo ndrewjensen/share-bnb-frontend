@@ -1,8 +1,7 @@
-import React, { useState,useContext } from "react";
-import { Navigate, useNavigate} from 'react-router-dom'
+import React, { useState, useContext } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import Alert from "./common/Alert";
-
 import userContext from "./UserContext";
 
 /** LoginForm Component
@@ -11,26 +10,26 @@ import userContext from "./UserContext";
  * -login() to call in App
  *
  * State:
- * -formData
+ * -formData, formErrors
  */
 
 function LoginForm({ login }) {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
   const [formErrors, setFormErrors] = useState([]);
   const { currentUser } = useContext(userContext);
+  const navigate = useNavigate();
 
   /** Handle form submit:
    *
    * Calls login func prop and, if not successful, sets errors.
    */
+
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      console.log("handlesubmit?")
       await login(formData);
       navigate("/");
     } catch (err) {
@@ -39,14 +38,15 @@ function LoginForm({ login }) {
   }
 
   /** Update form data field */
+
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(l => ({ ...l, [name]: value }));
+    setFormData((l) => ({ ...l, [name]: value }));
   }
 
   return (
     <div className="LoginForm">
-      {currentUser.username && <Navigate to="/"/>}
+      {currentUser.username && <Navigate to="/" />}
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
         <h3 className="mb-3">Log In</h3>
 
@@ -77,16 +77,15 @@ function LoginForm({ login }) {
                 />
               </div>
 
-              {formErrors.length
-                ? <Alert type="danger" messages={formErrors} />
-                : null}
+              {formErrors.length ? (
+                <Alert type="danger" messages={formErrors} />
+              ) : null}
 
               <div className="d-grid">
                 <button className="btn btn-primary" onClick={handleSubmit}>
                   Submit
                 </button>
               </div>
-
             </form>
           </div>
         </div>

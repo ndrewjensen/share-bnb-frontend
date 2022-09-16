@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
 import decode from "jwt-decode";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import useLocalStorage from "./useLocalStorage";
 import UserContext from "./UserContext";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import './App.css';
-import RoutesList from './RoutesList';
+import "./App.css";
+import RoutesList from "./RoutesList";
 import NavBar from "./Navbar";
 import ShareBnbApi from "./api";
 
@@ -14,15 +14,10 @@ export const TOKEN_STORAGE_ID = "token";
 
 /** App Component
  *
- * Props:
- * -none
+ * Props: none
+ * State: user
  *
- * State:
- * -user
- *
- * Context:
- *
- * -user
+ * Context:user
  */
 
 function App() {
@@ -39,10 +34,10 @@ function App() {
       async function getCurrentUser() {
         if (token) {
           try {
-            let decodedToken = decode(token)
-            console.log("decodedToken",decodedToken)
+            let decodedToken = decode(token);
+            console.log("decodedToken", decodedToken);
             let { sub } = decode(token);
-            console.log('username',sub)
+            console.log("username", sub);
             // put the token on the Api class so it can use it to call the API.
             ShareBnbApi.token = token;
             let currentUser = await ShareBnbApi.getCurrentUser(sub);
@@ -74,6 +69,7 @@ function App() {
    *
    * Make sure you await this function to see if any error happens.
    */
+
   async function signup(signupData) {
     let token = await ShareBnbApi.signup(signupData);
     setToken(token);
@@ -85,6 +81,7 @@ function App() {
    *
    * Make sure you await this function to see if any error happens.
    */
+
   async function login(loginData) {
     let token = await ShareBnbApi.login(loginData);
     setToken(token);
@@ -96,7 +93,7 @@ function App() {
     <UserContext.Provider value={{ currentUser }}>
       <div className="App">
         <BrowserRouter>
-          <NavBar logout={logout}/>
+          <NavBar logout={logout} />
           <RoutesList login={login} signup={signup} />
         </BrowserRouter>
       </div>

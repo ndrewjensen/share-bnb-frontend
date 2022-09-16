@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+
 import ShareBnbApi from "./api";
 import Alert from "./common/Alert";
+
 /** MessageForm Component
  *
  * Props:
- * -listingId as integer
+ * -listingId as integer, username, refresh() to call in ConversationDetail
  *
- * State:
- * -formData
+ * State: formData, formErrors
  */
 
 function MessageForm({ listingId, username, refresh }) {
@@ -15,6 +16,7 @@ function MessageForm({ listingId, username, refresh }) {
   const [formErrors, setFormErrors] = useState([]);
 
   /** Send message via API call. */
+
   async function handleSubmit(evt) {
     // take care of accidentally trying to search for just spaces
     evt.preventDefault();
@@ -23,15 +25,18 @@ function MessageForm({ listingId, username, refresh }) {
         await ShareBnbApi.messageOwner(message.trim(), listingId);
         setFormErrors(["Message sent!"]);
       } else {
-        refresh(await ShareBnbApi.replyToConversation(username, message.trim()));
+        refresh(
+          await ShareBnbApi.replyToConversation(username, message.trim())
+        );
       }
     } catch {
       setFormErrors(["Please fill out fields correctly."]);
     }
-    setMessage('');
+    setMessage("");
   }
 
   /** Update form fields */
+
   function handleChange(evt) {
     setMessage(evt.target.value);
   }
@@ -48,17 +53,18 @@ function MessageForm({ listingId, username, refresh }) {
               placeholder="Type your message here.."
               value={message}
               onChange={handleChange}
+              required
             />
           </div>
           {formErrors.length ? (
-            <Alert type="danger" messages={formErrors} />
+            <Alert type="info" messages={formErrors} />
           ) : null}
         </div>
-          <div className="text-end">
-            <button type="submit" className="btn btn-lg btn-primary">
-              Submit
-            </button>
-          </div>
+        <div className="text-end">
+          <button type="submit" className="btn btn-lg btn-primary">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

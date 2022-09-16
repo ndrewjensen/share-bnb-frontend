@@ -5,7 +5,7 @@ import React from "react";
  * { LoginForm, SignupForm, ProfileForm } -> Alert
  **/
 
-function Alert({ type = "danger", messages = [] }) {
+function Alert({ type = "info", messages = [] }) {
   console.debug("Alert", "type=", type, "messages=", messages);
 
   return (

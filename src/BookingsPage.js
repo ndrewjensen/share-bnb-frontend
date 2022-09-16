@@ -1,26 +1,25 @@
-import Bookings from "./Bookings";
-import {Navigate} from "react-router-dom"
+import { Navigate } from "react-router-dom";
 import { useContext } from "react";
+
+import Bookings from "./Bookings";
 import userContext from "./UserContext";
 
 /** LoginPage Component
  *
- * Props:
- * -login()
- *
- * State:
- * -none
+ * Props: none
+ * State: none
  */
 
- function BookingsPage() {
+function BookingsPage() {
   const { currentUser } = useContext(userContext);
 
   return (
-  <div className="BookingsPage">
-    { !currentUser.username && <Navigate to="/login"/>}
-    <h4>Bookings</h4>
-    <Bookings username={currentUser.username} />
-    </div>);
+    <div className="BookingsPage">
+      {!currentUser.username && <Navigate to="/login" />}
+      <h4>Bookings</h4>
+      <Bookings username={currentUser.username} />
+    </div>
+  );
 }
 
 export default BookingsPage;

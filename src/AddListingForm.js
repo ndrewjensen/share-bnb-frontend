@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import ShareBnbApi from "./api";
-import {Input, Button} from "reactstrap";
+import { Button } from "reactstrap";
 
+import ShareBnbApi from "./api";
 import Alert from "./common/Alert";
 
 /** AddListingForm Component
@@ -11,40 +11,29 @@ import Alert from "./common/Alert";
  * Props:
  * -none
  *
- * State:
- * -formData
+ * State: formData, formErrors
  */
 
 function AddListingForm() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({name: '', price: '', details: ''});
+  const [formData, setFormData] = useState({
+    name: "",
+    price: "",
+    details: "",
+  });
   const [formErrors, setFormErrors] = useState([]);
   const { register, handleSubmit } = useForm();
 
   /** Handle form submit:
    *
-   * Calls login func prop and, if not successful, sets errors.
+   * update multiFormData object and call API.
    */
 
-  // async function onSubmit(data) {
-  //   // data.preventDefault();
-  //   try {
-  //     formData.append("file", data.file[0]);
-  //     console.log("form Data ", formData)
-  //     debugger
-  //     const resp = await ShareBnbApi.addListing(formData);
-  //     console.log("response is ", resp)
-  //     navigate(`/listings/${resp.id}`); //navigate to detail
-  //   } catch (err) {
-  //     setFormErrors(err);
-  //   }
-  // }
   const onSubmit = async (data) => {
     let multiFormData = new FormData();
     multiFormData.append("name", formData.name);
     multiFormData.append("price", formData.price);
     multiFormData.append("details", formData.details);
-    debugger
     multiFormData.append("photo", data.file[0]);
 
     for (let key of multiFormData.entries()) {
@@ -110,8 +99,12 @@ function AddListingForm() {
               </div>
               <div className="mb-3">
                 <label className="form-label">Photo</label>
-                <input name="file" type="file" {...register("file")}
-                className="form-control" />
+                <input
+                  name="file"
+                  type="file"
+                  {...register("file")}
+                  className="form-control"
+                />
               </div>
               <Button>Submit</Button>
               {formErrors.length ? (

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
-import 'react-calendar/dist/Calendar.css';
-import {Form, FormGroup} from 'reactstrap'
+import { Form, FormGroup } from "reactstrap";
+import "react-calendar/dist/Calendar.css";
 
 import ShareBnbApi from "./api";
 import Alert from "./common/Alert";
@@ -47,7 +47,7 @@ function BookingForm({ listingId }) {
 
         <div className="card">
           <div className="card-body">
-            <Form onSubmit={handleSubmit} >
+            <Form onSubmit={handleSubmit}>
               <FormGroup inline>
                 <label className="form-label">Check-In</label>
                 <Calendar
@@ -64,15 +64,15 @@ function BookingForm({ listingId }) {
                   required
                 />
 
-              {formErrors.length ? (
-                <Alert type="danger" messages={formErrors} />
-              ) : null}
+                {formErrors.length ? (
+                  <Alert type="danger" messages={formErrors} />
+                ) : null}
 
-              <div className="d-grid">
-                <button className="btn btn-primary" onClick={handleSubmit}>
-                  Submit
-                </button>
-              </div>
+                <div className="d-grid">
+                  <button className="btn btn-primary" onClick={handleSubmit}>
+                    Submit
+                  </button>
+                </div>
               </FormGroup>
             </Form>
           </div>

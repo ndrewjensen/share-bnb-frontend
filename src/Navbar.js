@@ -1,27 +1,21 @@
-import { Link } from "react-router-dom";
-import { useContext } from 'react';
-import userContext from "./UserContext";
+import { useContext } from "react";
 import { Nav, NavItem, NavLink, NavbarBrand, Navbar } from "reactstrap";
 
+import userContext from "./UserContext";
 
 /** Navbar Component
  *
- * Props:
- * -logout()
- *
- * State:
- * -none
+ * Props: logout() to call in App
+ * State: none
  */
 
 function NavBar({ logout }) {
   const { currentUser } = useContext(userContext);
   return (
     <Navbar color="light">
-        <NavbarBrand href="/">
-          ShareBnb
-        </NavbarBrand>
+      <NavbarBrand href="/">ShareBnb</NavbarBrand>
       <Nav className="Navbar">
-        {!currentUser.username &&
+        {!currentUser.username && (
           <>
             <NavItem>
               <NavLink href="/login">Log In</NavLink>
@@ -30,8 +24,8 @@ function NavBar({ logout }) {
               <NavLink href="/signup">Sign Up</NavLink>
             </NavItem>
           </>
-        }
-        {currentUser.username &&
+        )}
+        {currentUser.username && (
           <>
             <NavItem>
               <NavLink href="/add-listing">Add Listing</NavLink>
@@ -43,11 +37,12 @@ function NavBar({ logout }) {
               <NavLink href="/bookings">Bookings</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/" onClick={logout}>Log Out {currentUser.username}</NavLink>
+              <NavLink href="/login" onClick={logout}>
+                Log Out {currentUser.username}
+              </NavLink>
             </NavItem>
-
           </>
-        }
+        )}
       </Nav>
     </Navbar>
   );

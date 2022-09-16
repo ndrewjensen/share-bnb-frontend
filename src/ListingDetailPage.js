@@ -1,24 +1,21 @@
-import {useParams} from "react-router-dom"
+import { useParams } from "react-router-dom";
+
 import ListingDetail from "./ListingDetail";
 
 /** ListingDetailPage Component
  *
- * Props:
- * -none
- *
+ * Props: none
  * Params: listingId
- *
- * State:
- * -formData
+ * State: none
  */
 
- function ListingDetailPage() {
+function ListingDetailPage() {
   const params = useParams();
-
   return (
-  <div className="ListingDetailPage">
-    <ListingDetail listingId={params.listingId} />
-    </div>);
+    <div className="ListingDetailPage">
+      <ListingDetail listingId={params.listingId} />
+    </div>
+  );
 }
 
 export default ListingDetailPage;
