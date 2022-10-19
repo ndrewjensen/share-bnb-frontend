@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
 import { Form, FormGroup } from "reactstrap";
-import "react-calendar/dist/Calendar.css";
+import "./Calendar.css";
 
 import ShareBnbApi from "./api";
 import Alert from "./common/Alert";
@@ -48,28 +48,32 @@ function BookingForm({ listingId }) {
         <div className="card">
           <div className="card-body">
             <Form onSubmit={handleSubmit}>
-              <FormGroup inline>
-                <label className="form-label">Check-In</label>
-                <Calendar
-                  name="checkIn"
-                  value={checkIn}
-                  onChange={setCheckIn}
-                  required
-                />
-                <label className="form-label">Check-Out</label>
-                <Calendar
-                  name="checkOut"
-                  value={checkOut}
-                  onChange={setCheckOut}
-                  required
-                />
-
+              <FormGroup className="d-flex flex-column justify-content-center">
+                <div className="d-flex flex-row">
+                  <div>
+                    <label className="form-label">Check-In</label>
+                    <Calendar
+                      name="checkIn"
+                      value={checkIn}
+                      onChange={setCheckIn}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="form-label">Check-Out</label>
+                    <Calendar
+                      name="checkOut"
+                      value={checkOut}
+                      onChange={setCheckOut}
+                      required
+                    />
+                  </div>
+                </div>
                 {formErrors.length ? (
                   <Alert type="danger" messages={formErrors} />
                 ) : null}
-
-                <div className="d-grid">
-                  <button className="btn btn-primary" onClick={handleSubmit}>
+                <div className="">
+                  <button className="btn btn-primary w-100 my-2" onClick={handleSubmit}>
                     Submit
                   </button>
                 </div>

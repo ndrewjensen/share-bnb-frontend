@@ -29,7 +29,7 @@ function Listings() {
   }, []);
 
   /** Triggered by search form submit; reloads listings. */
-  
+
   async function search(name) {
     let listings = await ShareBnbApi.getListings(name);
     setListings(listings);
@@ -40,7 +40,7 @@ function Listings() {
   return (
     <>
       <SearchForm search={search} />
-      <div className="Listings">
+      <div className="Listings my-gallery-class flex-row d-flex flex-wrap justify-content-center">
         {listings.map((l) => (
           <Listing key={l.id} listing={l} />
         ))}

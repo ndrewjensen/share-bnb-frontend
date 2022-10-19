@@ -25,19 +25,19 @@ function ListingDetail({ listingId }) {
       setIsLoading(false);
     }
     getListingDetail();
-  }, []);
+  }, [listingId]);
 
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div className="ListingDetail">
+    <div className="ListingDetail my-4">
       <h1>{listing.name}</h1>
-      <h6>Price: ${listing.price}/night</h6>
+      <h5>Price: ${listing.price}/night</h5>
       <p>{listing.details}</p>
-      <img src={listing.photo} alt={listing.name} className="col-4" />
-    
+      <img src={listing.photo} alt={listing.name} className="col-4 rounded" />
+
       {currentUser.username && currentUser.id !== listing.userId && (
         <>
-          <div className="col-4 offset-4">
+          <div className="col-4 offset-4 my-4">
             <MessageForm listingId={listingId} />
           </div>
           <BookingForm listingId={listingId} />

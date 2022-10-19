@@ -1,4 +1,4 @@
-import { Card, CardBody, CardTitle, CardText, NavLink } from "reactstrap";
+import { Card, CardBody, CardTitle, CardText, NavLink, CardImg } from "reactstrap";
 
 /** Listing Component
  *
@@ -8,17 +8,17 @@ import { Card, CardBody, CardTitle, CardText, NavLink } from "reactstrap";
 
 function Listing({ listing }) {
   return (
-    <NavLink href={`listings/${listing.id}`}>
-      <Card className="col-md-4 offset-md-4 my-2" color="light">
-        <CardBody className="p-1">
+    <Card className="col-md-3 m-2 d-flex justify-content-center" color="light">
+      <NavLink href={`listings/${listing.id}`}>
+        <CardBody className="p-0">
           <div className="Listing">
-            <CardTitle>{listing.name}</CardTitle>
-            <CardText>Price: ${listing.price}/day</CardText>
+            <CardTitle tag="h4" className="m-2">{listing.name}</CardTitle>
+            <CardText tag="h5" className="m-2">Price: ${listing.price}/day</CardText>
           </div>
+          <CardImg bottom src={listing.photo} alt={listing.name} />
         </CardBody>
-        <img src={listing.photo} alt={listing.name} className="m-2" />
-      </Card>
-    </NavLink>
+      </NavLink>
+    </Card>
   );
 }
 
