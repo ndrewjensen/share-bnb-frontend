@@ -58,7 +58,7 @@ function AddListingForm() {
   return (
     <div className="AddListingForm">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-        <h3 className="mb-3">Add a New Listing!</h3>
+        <h3 className="my-3">Add a New Listing!</h3>
 
         <div className="card">
           <div className="card-body">
@@ -106,7 +106,7 @@ function AddListingForm() {
                   className="form-control"
                 />
               </div>
-              <Button>Submit</Button>
+              <Button color="primary" className="w-100">Submit</Button>
               {formErrors.length ? (
                 <Alert type="danger" messages={formErrors} />
               ) : null}

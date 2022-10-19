@@ -8,14 +8,22 @@ import { Card, CardBody, CardTitle, CardText, NavLink, CardImg } from "reactstra
 
 function Listing({ listing }) {
   return (
-    <Card className="col-md-3 m-2 d-flex justify-content-center" color="light">
+    <Card
+      className="col-md-3 m-3 d-flex justify-content-center"
+      style={{width: "32em"}}
+      >
       <NavLink href={`listings/${listing.id}`}>
         <CardBody className="p-0">
           <div className="Listing">
-            <CardTitle tag="h4" className="m-2">{listing.name}</CardTitle>
-            <CardText tag="h5" className="m-2">Price: ${listing.price}/day</CardText>
+          <CardImg
+            top
+            src={listing.photo}
+            alt={listing.name}
+            style={{height: "24em", objectFit: "cover"}}
+            />
+            <CardTitle tag="h5" className="m-2">{listing.name}</CardTitle>
+            <CardText tag="h6" className="m-2">Price: ${listing.price}/day</CardText>
           </div>
-          <CardImg bottom src={listing.photo} alt={listing.name} />
         </CardBody>
       </NavLink>
     </Card>

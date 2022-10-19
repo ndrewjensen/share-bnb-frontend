@@ -15,7 +15,7 @@ function ConversationsPage() {
   return (
     <div className="ConversationsPage">
       {!currentUser.username && <Navigate to="/login" />}
-      <h4>Conversations</h4>
+      <h3 className="my-3">Conversations</h3>
       <Conversations />
     </div>
   );

@@ -16,7 +16,7 @@ function BookingsPage() {
   return (
     <div className="BookingsPage">
       {!currentUser.username && <Navigate to="/login" />}
-      <h4>Bookings</h4>
+      <h3 className="my-3">Bookings</h3>
       <Bookings username={currentUser.username} />
     </div>
   );
