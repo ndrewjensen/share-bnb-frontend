@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
 import { Form, FormGroup } from "reactstrap";
 import "./Calendar.css";
@@ -16,7 +15,6 @@ import Alert from "./common/Alert";
  */
 
 function BookingForm({ listingId }) {
-  const navigate = useNavigate();
   const [checkIn, setCheckIn] = useState(new Date());
   const [checkOut, setCheckOut] = useState(new Date());
   const [formErrors, setFormErrors] = useState([]);
@@ -33,7 +31,7 @@ function BookingForm({ listingId }) {
     } else {
       try {
         await ShareBnbApi.book({ listingId, checkIn, checkOut });
-        navigate("/");
+        setFormErrors(["Booking successful!"]);
       } catch (err) {
         setFormErrors(err);
       }
@@ -70,7 +68,10 @@ function BookingForm({ listingId }) {
                   </div>
                 </div>
                 {formErrors.length ? (
-                  <Alert type="danger" messages={formErrors} />
+                  <Alert
+                    type={formErrors[0] === "Booking successful!" ? "success" : "danger"}
+                    messages={formErrors}
+                  />
                 ) : null}
                 <div className="">
                   <button className="btn btn-primary w-100 my-2" onClick={handleSubmit}>
