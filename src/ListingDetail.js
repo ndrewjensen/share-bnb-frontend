@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 
 import BookingForm from "./BookingForm";
 import MessageForm from "./MessageForm";
@@ -28,13 +29,21 @@ function ListingDetail({ listingId }) {
   }, [listingId]);
 
   if (isLoading) return <LoadingSpinner />;
+
   return (
     <div className="ListingDetail my-4">
-      <h1>{listing.name}</h1>
+      <h3>{listing.name}</h3>
       <h5>Price: ${listing.price}/night</h5>
       <p>{listing.details}</p>
       <img src={listing.photo} alt={listing.name} className="col-4 rounded" />
+      {!currentUser.username && (
+        <div className="col-4 offset-4 my-4">
+          <NavLink to="/login" className="btn btn-primary mx-2">
+            Log In to Book
+          </NavLink>
+        </div>
 
+      )}
       {currentUser.username && currentUser.id !== listing.userId && (
         <>
           <div className="col-4 offset-4 my-4">
