@@ -13,7 +13,7 @@ import userContext from "./UserContext";
  * -formData, formErrors
  */
 
-function LoginForm({ login }) {
+function LoginForm({ login, state }) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -31,7 +31,7 @@ function LoginForm({ login }) {
     evt.preventDefault();
     try {
       await login(formData);
-      navigate("/");
+      navigate(-1);
     } catch (err) {
       setFormErrors(err);
     }
