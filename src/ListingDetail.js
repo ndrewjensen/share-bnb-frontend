@@ -36,9 +36,10 @@ function ListingDetail({ listingId }) {
       <h3>{listing.name}</h3>
       <h5>Price: ${listing.price}/night</h5>
       <p>{listing.details}</p>
+      <div className="linebreak"></div>
       {!currentUser.username && (
         <div>
-          <NavLink to="/login" className="btn btn-lg btn-primary my-1">
+          <NavLink to="/login" className="btn btn-lg btn-primary my-4">
             Log In to Book
           </NavLink>
         </div>

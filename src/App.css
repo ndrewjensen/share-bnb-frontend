@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 .App {
   text-align: center;
 }
@@ -11,6 +13,10 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+body {
+  font-family: 'Poppins', 'sans-serif';
 }
 
 .App-header {
@@ -37,6 +43,13 @@
   }
 }
 
-.react-calendar__month-view__weekdays__weekday { 
+.react-calendar__month-view__weekdays__weekday {
   margin: 0px;
+}
+
+.linebreak {
+  width: 35vw;
+  height: 1px;
+  background: lightgray;
+  margin: auto;
 }
