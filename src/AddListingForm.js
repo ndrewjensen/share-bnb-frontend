@@ -36,12 +36,8 @@ function AddListingForm() {
     multiFormData.append("details", formData.details);
     multiFormData.append("photo", data.file[0]);
 
-    for (let key of multiFormData.entries()) {
-      console.log(key[0] + ", " + key[1]);
-    }
     try {
       const resp = await ShareBnbApi.addListing(multiFormData);
-      console.log(resp);
       navigate(`/listings/${resp.id}`); //navigate to detail
     } catch (err) {
       setFormErrors(["Please fill out fields correctly."]);

@@ -18,7 +18,6 @@ class ShareBnbApi {
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
-    console.log("token", ShareBnbApi.token);
     const headers = { Authorization: `Bearer ${ShareBnbApi.token}` };
     const params = method === "get" ? data : {};
 
