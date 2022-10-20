@@ -9,6 +9,7 @@ import "./App.css";
 import RoutesList from "./RoutesList";
 import NavBar from "./Navbar";
 import ShareBnbApi from "./api";
+import LoadingSpinner from "./common/LoadingSpinner";
 
 export const TOKEN_STORAGE_ID = "token";
 
@@ -87,7 +88,7 @@ function App() {
     setToken(token);
   }
 
-  if (isLoading) return <h1>Loading</h1>;
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <UserContext.Provider value={{ currentUser }}>

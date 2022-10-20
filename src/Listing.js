@@ -22,7 +22,7 @@ function Listing({ listing }) {
             style={{height: "24em", objectFit: "cover"}}
             />
             <CardTitle tag="h5" className="m-2">{listing.name}</CardTitle>
-            <CardText tag="h6" className="m-2">Price: ${listing.price}/day</CardText>
+            <CardText tag="h6" className="m-2">Price: ${listing.price}/night</CardText>
           </div>
         </CardBody>
       </NavLink>
