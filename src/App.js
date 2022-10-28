@@ -92,7 +92,9 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <NavBar logout={logout} />
-          <RoutesList login={login} signup={signup} />
+          <div className="body">
+            <RoutesList login={login} signup={signup} />
+          </div>
         </BrowserRouter>
       </div>
     </UserContext.Provider>

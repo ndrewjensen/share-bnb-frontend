@@ -12,7 +12,7 @@ import userContext from "./UserContext";
 function NavBar({ logout }) {
   const { currentUser } = useContext(userContext);
   return (
-    <Navbar color="light">
+    <Navbar color="light" className="sticky-top">
       <NavbarBrand href="/">ShareBnb</NavbarBrand>
       <Nav className="Navbar">
         {!currentUser.username && (

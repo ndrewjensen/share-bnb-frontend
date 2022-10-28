@@ -53,3 +53,12 @@ body {
   background: lightgray;
   margin: auto;
 }
+
+.body {
+  background: url(https://share-bnb-aj.s3.us-west-1.amazonaws.com/background.jpeg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+}
