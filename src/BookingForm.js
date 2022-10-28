@@ -40,48 +40,53 @@ function BookingForm({ listingId }) {
 
   return (
     <div className="BookingForm">
-      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+      <div className="container col-md-6 offset-md-3 col-lg-10 offset-lg-1">
         <h3 className="mb-3">Book this!</h3>
 
-        <div className="card">
-          <div className="card-body">
-            <Form onSubmit={handleSubmit}>
-              <FormGroup className="d-flex flex-column justify-content-center">
-                <div className="d-flex flex-row">
-                  <div>
-                    <label className="form-label">Check-In</label>
-                    <Calendar
-                      name="checkIn"
-                      value={checkIn}
-                      onChange={setCheckIn}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="form-label">Check-Out</label>
-                    <Calendar
-                      name="checkOut"
-                      value={checkOut}
-                      onChange={setCheckOut}
-                      required
-                    />
-                  </div>
-                </div>
-                {formErrors.length ? (
-                  <Alert
-                    type={formErrors[0] === "Booking successful!" ? "success" : "danger"}
-                    messages={formErrors}
+        <Form onSubmit={handleSubmit}>
+          <FormGroup className="d-flex flex-column justify-content-center">
+            <div className="d-flex flex-row flex-wrap justify-content-center">
+              <div className="card col-lg-6 col-md-12">
+                <label className="form-label">Check-In</label>
+                <div className="card-body">
+                  <Calendar
+                    name="checkIn"
+                    value={checkIn}
+                    onChange={setCheckIn}
+                    required
                   />
-                ) : null}
-                <div className="">
-                  <button className="btn btn-primary w-100 my-2" onClick={handleSubmit}>
-                    Submit
-                  </button>
                 </div>
-              </FormGroup>
-            </Form>
-          </div>
-        </div>
+              </div>
+              <div className="card col-lg-6 col-md-12">
+                <label className="form-label">Check-Out</label>
+                <div className="card-body ">
+                  <Calendar
+                    name="checkOut"
+                    value={checkOut}
+                    onChange={setCheckOut}
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            {formErrors.length ? (
+              <Alert
+                type={
+                  formErrors[0] === "Booking successful!" ? "success" : "danger"
+                }
+                messages={formErrors}
+              />
+            ) : null}
+            <div className="">
+              <button
+                className="btn btn-primary col-3 my-2"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </div>
+          </FormGroup>
+        </Form>
       </div>
     </div>
   );

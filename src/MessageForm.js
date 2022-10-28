@@ -60,8 +60,8 @@ function MessageForm({ listingId, username, refresh }) {
             <Alert type="info" messages={formErrors} />
           ) : null}
         </div>
-        <div className="text-end">
-          <button type="submit" className="btn btn-lg btn-primary">
+        <div className="text-end d-flex justify-content-center mt-1">
+          <button type="submit" className="btn btn-lg btn-primary col-6">
             Submit
           </button>
         </div>
