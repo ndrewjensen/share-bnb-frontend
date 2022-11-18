@@ -5,7 +5,7 @@
 A web app that for users to list their homes or backyards for others to rent!
 
 Frontend built with [Create React App](https://github.com/facebook/create-react-app).\
-Backend built with [Flask](https://flask.palletsprojects.com/en/2.2.x/), [PostgreSQL](https://www.postgresql.org/).
+Backend built with [Flask](https://flask.palletsprojects.com/en/2.2.x/), [PostgreSQL](https://www.postgresql.org/). Repo for backend can be found [here](https://github.com/raytene-han/share-bnb-backend).
 
 Features:
 - [AWS S3](https://aws.amazon.com/s3/)
